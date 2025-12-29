@@ -32,6 +32,129 @@
             --shadow-dark: rgba(139, 0, 0, 0.3);
         }
 
+        #bg {
+            -moz-animation: bg 60s linear infinite;
+            -webkit-animation: bg 60s linear infinite;
+            -ms-animation: bg 60s linear infinite;
+            animation: bg 60s linear infinite;
+            -moz-backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -moz-transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            background: #ffffff url("") center left;
+            background-repeat: repeat-x;
+            height: 100%;
+            left: 0;
+            opacity: 0.9;
+            position: fixed;
+            top: 0;
+        }
+
+        @-moz-keyframes bg {
+            0% {
+                -moz-transform: translate3d(0, 0, 0);
+                -webkit-transform: translate3d(0, 0, 0);
+                -ms-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                -moz-transform: translate3d(-8000px, 0, 0);
+                -webkit-transform: translate3d(-8000px, 0, 0);
+                -ms-transform: translate3d(-8000px, 0, 0);
+                transform: translate3d(-8000px, 0, 0);
+            }
+        }
+
+        @-webkit-keyframes bg {
+            0% {
+                -moz-transform: translate3d(0, 0, 0);
+                -webkit-transform: translate3d(0, 0, 0);
+                -ms-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                -moz-transform: translate3d(-8000px, 0, 0);
+                -webkit-transform: translate3d(-8000px, 0, 0);
+                -ms-transform: translate3d(-8000px, 0, 0);
+                transform: translate3d(-8000px, 0, 0);
+            }
+        }
+
+        @-ms-keyframes bg {
+            0% {
+                -moz-transform: translate3d(0, 0, 0);
+                -webkit-transform: translate3d(0, 0, 0);
+                -ms-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                -moz-transform: translate3d(-8000px, 0, 0);
+                -webkit-transform: translate3d(-8000px, 0, 0);
+                -ms-transform: translate3d(-8000px, 0, 0);
+                transform: translate3d(-8000px, 0, 0);
+            }
+        }
+
+        @keyframes bg {
+            0% {
+                -moz-transform: translate3d(0, 0, 0);
+                -webkit-transform: translate3d(0, 0, 0);
+                -ms-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                -moz-transform: translate3d(-8000px, 0, 0);
+                -webkit-transform: translate3d(-8000px, 0, 0);
+                -ms-transform: translate3d(-8000px, 0, 0);
+                transform: translate3d(-8000px, 0, 0);
+            }
+        }
+
+        #bg {
+            background-size: auto 100%;
+            width: 6750px;
+        }
+
+        @-moz-keyframes overlay {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes overlay {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @-ms-keyframes overlay {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes overlay {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
         body {
             background: linear-gradient(135deg, var(--dark-bg) 0%, #2c0f1a 100%);
             color: var(--text-light);
@@ -71,7 +194,6 @@
             z-index: 1;
         }
 
-        /* 头部样式 */
         header {
             text-align: center;
             padding: clamp(30px, 8vh, 80px) 0 clamp(20px, 5vh, 40px);
@@ -116,7 +238,6 @@
             line-height: 1.5;
         }
 
-        /* 倒计时样式 */
         .countdown {
             display: flex;
             justify-content: center;
@@ -187,7 +308,6 @@
             letter-spacing: 1px;
         }
 
-        /* 节目单区域 */
         #program-section {
             margin-top: clamp(30px, 8vh, 60px);
             padding: 0 clamp(10px, 3vw, 20px);
@@ -218,7 +338,7 @@
 
         .program-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: clamp(15px, 4vw, 30px);
             margin-top: clamp(20px, 5vh, 40px);
         }
@@ -348,7 +468,6 @@
             color: var(--text-gold);
         }
 
-        /* 页脚样式 */
         footer {
             background: linear-gradient(to top, rgba(26, 10, 10, 0.95), transparent);
             padding: clamp(30px, 8vh, 50px) 0 clamp(15px, 4vh, 20px);
@@ -408,7 +527,6 @@
             width: 100%;
         }
 
-        /* 返回顶部按钮 */
         .back-to-top {
             position: fixed;
             bottom: clamp(20px, 5vw, 30px);
@@ -444,12 +562,10 @@
             transform: translateY(-2px) scale(1.05);
         }
 
-        /* 移动端优化 */
         .mobile-only {
             display: none;
         }
 
-        /* 动画效果 */
         @keyframes glow {
             0% { 
                 text-shadow: 0 0 10px rgba(255, 82, 82, 0.4), 0 0 20px rgba(255, 82, 82, 0.2); 
@@ -477,7 +593,6 @@
             }
         }
 
-        /* 触摸设备优化 */
         @media (hover: none) and (pointer: coarse) {
             .program-card:active {
                 transform: translateY(-4px) scale(1.01);
@@ -493,7 +608,6 @@
             }
         }
 
-        /* 响应式设计 */
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -521,8 +635,8 @@
                 display: block;
             }
 
-            /* 移动端滑动优化 */
             .program-grid {
+                grid-template-columns: 1fr;
                 scroll-snap-type: x mandatory;
                 overflow-x: auto;
                 display: flex;
@@ -586,13 +700,18 @@
             }
         }
 
-        @media (min-width: 1200px) {
+        @media (min-width: 769px) {
             .program-grid {
-                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        /* 深色模式支持 */
+        @media (min-width: 1200px) {
+            .program-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (prefers-color-scheme: dark) {
             body {
                 background: linear-gradient(135deg, #0A0505 0%, #1c0a0a 100%);
@@ -603,7 +722,6 @@
             }
         }
 
-        /* 打印样式 */
         @media print {
             .back-to-top,
             #particles-js,
@@ -622,12 +740,10 @@
             }
         }
 
-        /* 性能优化 */
         .will-change {
             will-change: transform, opacity;
         }
 
-        /* 滚动条美化 */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -649,6 +765,7 @@
     </style>
 </head>
 <body>
+    <div id="bg"></div>
     <div id="particles-js"></div>
     <div class="fireworks-container" id="fireworks"></div>
 
@@ -688,7 +805,7 @@
 
         <footer>
             <div class="copyright">
-                <p>本站图片调用的是“图床API”,无法审查内容</p>
+                <p>本站图片调用的是"图床API",无法审查内容</p>
                 <p>&copy; 2024 元旦晚会 | 版权所有 <a href="https://www.WenTianPlay.com" target="_blank">文天玩WenTianPlay</a></p>
             </div>
         </footer>
@@ -699,18 +816,14 @@
     </button>
 
     <script>
-        // 粒子背景初始化
         document.addEventListener('DOMContentLoaded', function() {
-            // 检测设备类型
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-            // iOS 设备优化
             if (isIOS) {
                 document.body.classList.add('ios-device');
             }
 
-            // 粒子效果 - 根据设备调整性能
             particlesJS('particles-js', {
                 particles: {
                     number: { 
@@ -731,7 +844,7 @@
                         random: true 
                     },
                     line_linked: {
-                        enable: !isMobile, // 移动端关闭线条连接提高性能
+                        enable: !isMobile,
                         distance: 150,
                         color: "#FF5252",
                         opacity: 0.4,
@@ -751,7 +864,7 @@
                     detect_on: "canvas",
                     events: {
                         onhover: { 
-                            enable: !isMobile, // 移动端关闭悬停效果
+                            enable: !isMobile,
                             mode: "repulse" 
                         },
                         onclick: { 
@@ -763,14 +876,11 @@
                 }
             });
 
-            // 加载数据
             loadEventData();
 
-            // 初始化倒计时
             updateCountdown();
             const countdownInterval = setInterval(updateCountdown, 1000);
 
-            // 返回顶部按钮
             const backToTop = document.getElementById('backToTop');
             let scrollTimeout;
 
@@ -798,27 +908,22 @@
                 });
             });
 
-            // 移动端触摸优化
             if (isMobile) {
                 document.addEventListener('touchstart', function() {}, { passive: true });
                 document.addEventListener('touchmove', function() {}, { passive: true });
             }
 
-            // 根据性能偏好调整动画
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 document.documentElement.style.setProperty('--animation-speed', '0.01ms');
             }
 
-            // 初始化烟花效果（仅在非移动端启用以节省性能）
             if (!isMobile) {
                 initFireworks();
             }
 
-            // 页面加载动画
             animateElements();
         });
 
-        // 元素动画
         function animateElements() {
             const elements = document.querySelectorAll('.countdown-item, .program-card');
             elements.forEach((el, index) => {
@@ -833,9 +938,7 @@
             });
         }
 
-        // 加载晚会数据
         function loadEventData() {
-            // 显示加载状态
             const programGrid = document.getElementById('program-grid');
             programGrid.innerHTML = `
                 <div class="loading">
@@ -844,12 +947,10 @@
                 </div>
             `;
 
-            // 设置超时
             const timeoutPromise = new Promise((_, reject) => {
                 setTimeout(() => reject(new Error('请求超时')), 10000);
             });
 
-            // 数据加载
             const dataPromise = fetch('index.json')
                 .then(response => {
                     if (!response.ok) {
@@ -869,26 +970,15 @@
 
             Promise.race([dataPromise, timeoutPromise])
                 .then(data => {
-                    // 更新页面内容
                     document.getElementById('year-title').textContent = `${data.year}元旦晚会`;
                     document.getElementById('motto').textContent = data.motto;
 
-                    // 设置背景图片
                     if (data.backgroundImage) {
-                        const bgImage = new Image();
-                        bgImage.src = data.backgroundImage;
-                        bgImage.onload = () => {
-                            document.body.style.backgroundImage = `url('${data.backgroundImage}')`;
-                            document.body.style.backgroundSize = 'cover';
-                            document.body.style.backgroundPosition = 'center';
-                            document.body.style.backgroundAttachment = 'fixed';
-                        };
-                        bgImage.onerror = () => {
-                            console.warn('背景图片加载失败，使用默认背景');
-                        };
+                        const bgElement = document.getElementById('bg');
+                        bgElement.style.background = `#ffffff url("${data.backgroundImage}") center left`;
+                        bgElement.style.backgroundRepeat = 'repeat-x';
                     }
 
-                    // 生成节目单
                     programGrid.innerHTML = '';
 
                     data.programs.forEach((program, index) => {
@@ -896,7 +986,6 @@
                         programCard.className = 'program-card will-change';
                         programCard.style.animationDelay = `${index * 0.1}s`;
 
-                        // 图片预加载和错误处理
                         const imgUrl = program.image || `https://picsum.photos/600/400?random=${index}`;
                         const fallbackImg = `https://picsum.photos/600/400?random=${index + 1000}`;
 
@@ -919,13 +1008,11 @@
                         programGrid.appendChild(programCard);
                     });
 
-                    // 重新初始化动画
                     setTimeout(animateElements, 100);
                 })
                 .catch(error => {
                     console.error('加载数据失败:', error);
 
-                    // 显示错误信息并添加自动刷新
                     programGrid.innerHTML = `
                         <div class="loading" id="loading-error">
                             <i class="fas fa-exclamation-triangle"></i> 
@@ -952,19 +1039,16 @@
                         </div>
                     `;
 
-                    // 开始倒计时并自动刷新
                     startAutoRefresh();
                 });
         }
 
-        // 倒计时功能
         function updateCountdown() {
             try {
                 const now = new Date();
                 const currentYear = now.getFullYear();
                 let newYear = new Date(currentYear + 1, 0, 1);
 
-                // 如果已经是1月1日，计算下一个新年
                 if (now.getMonth() === 0 && now.getDate() === 1) {
                     newYear = new Date(currentYear, 0, 1);
                     const diff = newYear - now;
@@ -980,7 +1064,6 @@
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-                // 添加数字变化动画
                 animateNumberChange('days', days);
                 animateNumberChange('hours', hours);
                 animateNumberChange('minutes', minutes);
@@ -991,7 +1074,6 @@
             }
         }
 
-        // 数字变化动画
         function animateNumberChange(elementId, newValue) {
             const element = document.getElementById(elementId);
             if (!element) return;
@@ -1010,7 +1092,6 @@
             }
         }
 
-        // 自动刷新倒计时
         function startAutoRefresh() {
             let countdown = 10;
             const countdownElement = document.getElementById('countdown');
@@ -1027,11 +1108,9 @@
                 }
             }, 1000);
 
-            // 存储interval以便清理
             window.refreshInterval = countdownInterval;
         }
 
-        // 烟花效果（优化版）
         function initFireworks() {
             try {
                 const canvas = document.createElement('canvas');
@@ -1109,12 +1188,10 @@
                 function animate() {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                    // 添加新的烟花
                     if (Math.random() < 0.05 && fireworks.length < 5) {
                         fireworks.push(new Firework());
                     }
 
-                    // 更新和绘制烟花
                     for (let i = fireworks.length - 1; i >= 0; i--) {
                         fireworks[i].update();
                         fireworks[i].draw();
@@ -1124,11 +1201,10 @@
                         }
                     }
 
-                    // 更新和绘制粒子
                     for (let i = particles.length - 1; i >= 0; i--) {
                         particles[i].x += particles[i].vx;
                         particles[i].y += particles[i].vy;
-                        particles[i].vy += 0.05; // 重力
+                        particles[i].vy += 0.05;
                         particles[i].life--;
 
                         if (particles[i].life > 0) {
@@ -1146,7 +1222,6 @@
                     requestAnimationFrame(animate);
                 }
 
-                // 窗口大小调整
                 function resize() {
                     canvas.width = window.innerWidth;
                     canvas.height = window.innerHeight;
@@ -1160,7 +1235,6 @@
             }
         }
 
-        // 安全保护（可选，可能影响开发体验）
         if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
             document.onkeydown = function(e) {
                 if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
@@ -1174,7 +1248,6 @@
             });
         }
 
-        // 页面可见性变化处理
         document.addEventListener('visibilitychange', function() {
             if (document.hidden) {
                 console.log('页面被隐藏');
@@ -1183,14 +1256,12 @@
             }
         });
 
-        // 清理函数
         function cleanup() {
             if (window.refreshInterval) {
                 clearInterval(window.refreshInterval);
             }
         }
 
-        // 页面卸载时清理
         window.addEventListener('beforeunload', cleanup);
     </script>
 </body>
