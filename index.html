@@ -3,384 +3,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>元旦晚会</title>
+    <title>元旦晚会 - KN.WenTianPlay.top</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:'Microsoft YaHei',sans-serif}
-        :root{
-            --primary-red:#C62828;
-            --secondary-red:#E53935;
-            --dark-red:#8B0000;
-            --light-red:#FF5252;
-            --dark-bg:#1A0A0A;
-            --light-bg:#2A0F0F;
-            --text-light:#FFFFFF;
-            --text-gold:#FFD700
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Microsoft YaHei', sans-serif; }
+        :root {
+            --primary-red: #C62828;
+            --secondary-red: #E53935;
+            --dark-red: #8B0000;
+            --light-red: #FF5252;
+            --dark-bg: #1A0A0A;
+            --light-bg: #2A0F0F;
+            --text-light: #FFFFFF;
+            --text-gold: #FFD700;
         }
-        body{
-            background:var(--dark-bg);
-            color:var(--text-light);
-            overflow-x:hidden;
-            line-height:1.6
+        
+        body {
+            background: #1A0A0A;
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
         }
-        #particles-js{
-            position:fixed;
-            width:100%;
-            height:100%;
-            z-index:-1
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
-        .container{
-            max-width:1400px;
-            margin:0 auto;
-            padding:0 20px
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
         }
-        .hero{
-            height:100vh;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            text-align:center;
-            position:relative
+        
+        header {
+            text-align: center;
+            padding: 60px 0 40px;
         }
-        .hero-content h2{
-            font-size:4.5rem;
-            margin-bottom:20px;
-            background:linear-gradient(45deg,var(--light-red),var(--text-gold));
-            -webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;
-            text-shadow:0 0 20px rgba(255,82,82,0.5);
-            animation:glow 3s infinite alternate
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, var(--light-red), var(--text-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 82, 82, 0.5);
+            animation: glow 3s infinite alternate;
         }
-        .hero-content p{
-            font-size:1.5rem;
-            max-width:800px;
-            margin:0 auto 30px;
-            color:rgba(255,255,255,0.9)
+        
+        .motto {
+            font-size: 1.8rem;
+            color: var(--text-gold);
+            margin-bottom: 30px;
+            font-weight: 300;
         }
-        .countdown{
-            display:flex;
-            justify-content:center;
-            margin:40px 0;
-            flex-wrap:wrap
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            gap: 20px;
+            flex-wrap: wrap;
         }
-        .countdown-item{
-            margin:10px;
-            text-align:center
+        
+        .countdown-item {
+            margin: 10px;
+            text-align: center;
         }
-        .countdown-number{
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            width:120px;
-            height:120px;
-            background:rgba(198,40,40,0.1);
-            border:2px solid var(--primary-red);
-            border-radius:10px;
-            font-size:3.5rem;
-            font-weight:bold;
-            color:var(--light-red);
-            box-shadow:0 0 20px rgba(198,40,40,0.3);
-            position:relative;
-            overflow:hidden
+        
+        .countdown-number {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            background: rgba(198, 40, 40, 0.1);
+            border: 2px solid var(--primary-red);
+            border-radius: 10px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--light-red);
+            box-shadow: 0 0 20px rgba(198, 40, 40, 0.3);
         }
-        .countdown-number::before{
-            content:'';
-            position:absolute;
-            top:-50%;
-            left:-50%;
-            width:200%;
-            height:200%;
-            background:linear-gradient(45deg,transparent,rgba(255,82,82,0.2),transparent);
-            transform:rotate(45deg);
-            animation:shine 3s infinite
+        
+        .countdown-label {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            color: var(--light-red);
         }
-        .countdown-label{
-            margin-top:10px;
-            font-size:1.2rem;
-            color:var(--light-red)
+        
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
         }
-        .btn{
-            display:inline-block;
-            padding:15px 40px;
-            background:linear-gradient(45deg,var(--primary-red),var(--light-red));
-            color:white;
-            border:none;
-            border-radius:50px;
-            font-size:1.2rem;
-            font-weight:bold;
-            cursor:pointer;
-            transition:all 0.3s ease;
-            position:relative;
-            overflow:hidden;
-            text-decoration:none;
-            box-shadow:0 5px 15px rgba(198,40,40,0.4)
+        
+        .program-card {
+            background: rgba(42, 15, 15, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 82, 82, 0.3);
+            transition: all 0.4s ease;
         }
-        .btn:hover{
-            transform:translateY(-5px);
-            box-shadow:0 10px 20px rgba(198,40,40,0.6)
+        
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(139, 0, 0, 0.4);
+            border-color: var(--light-red);
         }
-        .btn::after{
-            content:'';
-            position:absolute;
-            top:0;
-            left:-100%;
-            width:100%;
-            height:100%;
-            background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
-            transition:all 0.5s ease
+        
+        .program-img {
+            height: 200px;
+            overflow: hidden;
         }
-        .btn:hover::after{
-            left:100%
+        
+        .program-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
-        section{
-            padding:100px 0
+        
+        .program-card:hover .program-img img {
+            transform: scale(1.1);
         }
-        .section-title{
-            text-align:center;
-            margin-bottom:60px
+        
+        .program-content {
+            padding: 20px;
         }
-        .section-title h2{
-            font-size:2.8rem;
-            color:var(--light-red);
-            position:relative;
-            display:inline-block;
-            padding-bottom:15px
+        
+        .program-content h3 {
+            color: var(--light-red);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
         }
-        .section-title h2::after{
-            content:'';
-            position:absolute;
-            bottom:0;
-            left:50%;
-            transform:translateX(-50%);
-            width:100px;
-            height:3px;
-            background:var(--light-red)
+        
+        .program-content p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 15px;
+            line-height: 1.5;
         }
-        .program-grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
-            gap:30px;
-            margin-top:50px
+        
+        .time {
+            display: inline-block;
+            background: rgba(255, 82, 82, 0.1);
+            color: var(--light-red);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 82, 82, 0.3);
         }
-        .program-card{
-            background:rgba(42,15,15,0.7);
-            border-radius:15px;
-            overflow:hidden;
-            transition:all 0.4s ease;
-            border:1px solid rgba(255,82,82,0.3)
+        
+        .loading {
+            text-align: center;
+            padding: 50px 0;
+            color: var(--light-red);
+            font-size: 1.2rem;
+            grid-column: 1 / -1;
         }
-        .program-card:hover{
-            transform:translateY(-10px);
-            box-shadow:0 15px 30px rgba(139,0,0,0.4);
-            border-color:var(--light-red)
+        
+        .fireworks-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
         }
-        .program-img{
-            height:200px;
-            overflow:hidden
+        
+        footer {
+            background: rgba(26, 10, 10, 0.9);
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            border-top: 2px solid rgba(255, 82, 82, 0.3);
         }
-        .program-img img{
-            width:100%;
-            height:100%;
-            object-fit:cover;
-            transition:all 0.5s ease
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
         }
-        .program-card:hover .program-img img{
-            transform:scale(1.1)
+        
+        .copyright a {
+            color: var(--light-red);
+            text-decoration: none;
         }
-        .program-content{
-            padding:25px
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-red);
+            color: white;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.4);
         }
-        .program-content h3{
-            font-size:1.5rem;
-            margin-bottom:10px;
-            color:var(--light-red)
+        
+        .back-to-top:hover {
+            background: var(--light-red);
+            transform: translateY(-3px);
         }
-        .program-content p{
-            color:rgba(255,255,255,0.8);
-            margin-bottom:15px
+        
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px rgba(255, 82, 82, 0.5); }
+            100% { text-shadow: 0 0 20px rgba(255, 82, 82, 0.8), 0 0 30px rgba(255, 82, 82, 0.6); }
         }
-        .time{
-            display:inline-block;
-            background:rgba(255,82,82,0.1);
-            color:var(--light-red);
-            padding:5px 15px;
-            border-radius:20px;
-            font-size:0.9rem
-        }
-        .fireworks-container{
-            position:fixed;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            pointer-events:none;
-            z-index:-1
-        }
-        footer{
-            background:rgba(26,10,10,0.9);
-            padding:60px 0 30px;
-            border-top:2px solid var(--light-red)
-        }
-        .footer-content{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-            gap:40px;
-            margin-bottom:40px
-        }
-        .footer-column h3{
-            color:var(--light-red);
-            margin-bottom:20px;
-            font-size:1.5rem;
-            position:relative;
-            padding-bottom:10px
-        }
-        .footer-column h3::after{
-            content:'';
-            position:absolute;
-            bottom:0;
-            left:0;
-            width:50px;
-            height:2px;
-            background:var(--light-red)
-        }
-        .footer-column ul{
-            list-style:none
-        }
-        .footer-column ul li{
-            margin-bottom:10px
-        }
-        .footer-column ul li a{
-            color:rgba(255,255,255,0.8);
-            text-decoration:none;
-            transition:all 0.3s ease
-        }
-        .footer-column ul li a:hover{
-            color:var(--light-red);
-            padding-left:5px
-        }
-        .copyright{
-            text-align:center;
-            padding-top:30px;
-            border-top:1px solid rgba(255,255,255,0.1);
-            color:rgba(255,255,255,0.7);
-            font-size:0.9rem
-        }
-        .copyright a{
-            color:var(--light-red);
-            text-decoration:none
-        }
-        @keyframes glow{
-            0%{text-shadow:0 0 10px rgba(255,82,82,0.5)}
-            100%{text-shadow:0 0 20px rgba(255,82,82,0.8),0 0 30px rgba(255,82,82,0.6)}
-        }
-        @keyframes shine{
-            0%{transform:translateX(-100%) rotate(45deg)}
-            100%{transform:translateX(100%) rotate(45deg)}
-        }
-        .loading{
-            text-align:center;
-            padding:50px 0;
-            color:var(--light-red);
-            font-size:1.2rem
-        }
-        .loading i{
-            margin-right:10px;
-            animation:spin 1s linear infinite
-        }
-        @keyframes spin{
-            0%{transform:rotate(0deg)}
-            100%{transform:rotate(360deg)}
-        }
-        .modal{
-            display:none;
-            position:fixed;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            background:rgba(0,0,0,0.8);
-            z-index:2000;
-            align-items:center;
-            justify-content:center
-        }
-        .modal-content{
-            background:var(--light-bg);
-            border-radius:15px;
-            max-width:500px;
-            width:90%;
-            padding:30px;
-            position:relative;
-            border:2px solid var(--light-red);
-            box-shadow:0 0 30px rgba(255,82,82,0.5)
-        }
-        .close-modal{
-            position:absolute;
-            top:15px;
-            right:15px;
-            font-size:1.5rem;
-            color:var(--text-light);
-            cursor:pointer;
-            transition:all 0.3s ease
-        }
-        .close-modal:hover{
-            color:var(--light-red);
-            transform:rotate(90deg)
-        }
-        .back-to-top{
-            position:fixed;
-            bottom:30px;
-            right:30px;
-            width:50px;
-            height:50px;
-            background:var(--primary-red);
-            color:white;
-            border-radius:50%;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:1.5rem;
-            cursor:pointer;
-            transition:all 0.3s ease;
-            z-index:100;
-            box-shadow:0 5px 15px rgba(198,40,40,0.4)
-        }
-        .back-to-top:hover{
-            background:var(--light-red);
-            transform:translateY(-5px)
-        }
-        @media (max-width:768px){
-            .hero-content h2{
-                font-size:2.5rem
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .motto { font-size: 1.3rem; }
+            .countdown-number { 
+                width: 80px; 
+                height: 80px; 
+                font-size: 2rem; 
             }
-            .countdown-number{
-                width:80px;
-                height:80px;
-                font-size:2.5rem
-            }
-            .program-grid{
-                grid-template-columns:1fr
-            }
-            .section-title h2{
-                font-size:2rem
-            }
+            .program-grid { grid-template-columns: 1fr; }
         }
-        @media (max-width:480px){
-            .hero-content h2{
-                font-size:2rem
-            }
-            .hero-content p{
-                font-size:1.2rem
-            }
-            .countdown-number{
-                width:70px;
-                height:70px;
-                font-size:2rem
-            }
-            .btn{
-                padding:12px 30px;
-                font-size:1rem
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            .motto { font-size: 1.1rem; }
+            .countdown { gap: 10px; }
+            .countdown-number { 
+                width: 70px; 
+                height: 70px; 
+                font-size: 1.7rem; 
             }
         }
     </style>
@@ -388,349 +255,350 @@
 <body>
     <div id="particles-js"></div>
     <div class="fireworks-container" id="fireworks"></div>
-
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h2>元旦晚会</h2>
-                <p>元旦迎新年</p>
-                <div class="countdown">
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="days">00</div>
-                        <div class="countdown-label">天</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="hours">00</div>
-                        <div class="countdown-label">时</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="minutes">00</div>
-                        <div class="countdown-label">分</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="seconds">00</div>
-                        <div class="countdown-label">秒</div>
-                    </div>
+    
+    <div class="container">
+        <header>
+            <h1 id="year-title">元旦晚会</h1>
+            <p class="motto" id="motto"></p>
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">天</div>
                 </div>
-                <a href="#program" class="btn">查看晚会节目单</a>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">时</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">分</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">秒</div>
+                </div>
             </div>
-        </div>
-    </section>
+        </header>
 
-    <section id="program" style="background:rgba(42,15,15,0.5)">
-        <div class="container">
-            <div class="section-title">
-                <h2>晚会节目单</h2>
-            </div>
+        <div id="program-section">
+            <h2 style="text-align: center; margin-bottom: 20px; color: var(--light-red); font-size: 2rem;">
+                晚会节目单
+            </h2>
             <div id="program-grid" class="program-grid">
-                <!-- 节目将通过JavaScript动态加载 -->
-                <div class="loading" id="program-loading">
-                    <i class="fas fa-spinner"></i> 正在加载节目单...
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i> 正在加载节目数据...
                 </div>
             </div>
         </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>晚会信息</h3>
-                    <ul>
-                        <li><a href="#home">首页</a></li>
-                        <li><a href="#program">节目单</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>联系我们</h3>
-                    <ul>
-                        <li>邮箱: contact@wentianplays.com</li>
-                    </ul>
-                </div>
-            </div>
+        
+        <footer>
             <div class="copyright">
-                <p>&copy; 2025-2027 元旦晚会 | 版权所有 <a href="https://www.WenTianPlay.com">文天玩WenTianPlay</a></p>
+                <p>&copy; 2025 元旦晚会 | 版权所有 <a href="https://www.WenTianPlay.com">文天玩WenTianPlay</a></p>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <div class="back-to-top" id="backToTop">
         <i class="fas fa-chevron-up"></i>
     </div>
 
-    <div class="modal" id="errorModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeErrorModal">&times;</span>
-            <h3>加载失败</h3>
-            <p id="errorMessage">无法加载节目数据，请稍后重试。</p>
-            <button class="btn" id="errorModalConfirm">确定</button>
-        </div>
-    </div>
-
     <script>
-        document.addEventListener('DOMContentLoaded',function(){
-            // 初始化粒子背景
-            particlesJS('particles-js',{
-                particles:{
-                    number:{value:80,density:{enable:true,value_area:800}},
-                    color:{value:"#FF5252"},
-                    shape:{type:"circle"},
-                    opacity:{value:0.5,random:true},
-                    size:{value:3,random:true},
-                    line_linked:{
-                        enable:true,
-                        distance:150,
-                        color:"#FF5252",
-                        opacity:0.4,
-                        width:1
+        // 粒子背景初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 粒子效果
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: "#FF5252" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#FF5252",
+                        opacity: 0.4,
+                        width: 1
                     },
-                    move:{
-                        enable:true,
-                        speed:2,
-                        direction:"none",
-                        random:true,
-                        straight:false,
-                        out_mode:"out",
-                        bounce:false
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false
                     }
                 },
-                interactivity:{
-                    detect_on:"canvas",
-                    events:{
-                        onhover:{enable:true,mode:"repulse"},
-                        onclick:{enable:true,mode:"push"},
-                        resize:true
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "repulse" },
+                        onclick: { enable: true, mode: "push" },
+                        resize: true
                     }
                 }
             });
-
-            // 倒计时功能
-            function updateCountdown(){
-                const now=new Date();
-                const newYear=new Date(now.getFullYear()+1,0,1);
-                const diff=newYear-now;
-                const days=Math.floor(diff/(1000*60*60*24));
-                const hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-                const minutes=Math.floor((diff%(1000*60*60))/(1000*60));
-                const seconds=Math.floor((diff%(1000*60))/1000);
-                document.getElementById('days').textContent=days.toString().padStart(2,'0');
-                document.getElementById('hours').textContent=hours.toString().padStart(2,'0');
-                document.getElementById('minutes').textContent=minutes.toString().padStart(2,'0');
-                document.getElementById('seconds').textContent=seconds.toString().padStart(2,'0');
-            }
-            setInterval(updateCountdown,1000);
+            
+            // 加载数据
+            loadEventData();
+            
+            // 初始化倒计时
             updateCountdown();
-
-            // 加载节目数据
-            async function loadProgramData(){
-                try{
-                    const response=await fetch('kn.json');
-                    if(!response.ok){
-                        throw new Error(`HTTP错误! 状态: ${response.status}`);
-                    }
-                    const data=await response.json();
-                    const programGrid=document.getElementById('program-grid');
-                    const loading=document.getElementById('program-loading');
-                    
-                    if(loading){
-                        programGrid.removeChild(loading);
-                    }
-                    
-                    if(data.programs&&Array.isArray(data.programs)){
-                        data.programs.forEach(program=>{
-                            const programCard=document.createElement('div');
-                            programCard.className='program-card';
-                            programCard.innerHTML=`
-                                <div class="program-img">
-                                    <img src="${program.image}" alt="${program.title}">
-                                </div>
-                                <div class="program-content">
-                                    <h3>${program.title}</h3>
-                                    <p>${program.description}</p>
-                                    <span class="time">${program.time}</span>
-                                </div>
-                            `;
-                            programGrid.appendChild(programCard);
-                        });
-                    }else{
-                        throw new Error('节目数据格式错误');
-                    }
-                }catch(error){
-                    console.error('加载节目数据失败:',error);
-                    const loading=document.getElementById('program-loading');
-                    if(loading){
-                        loading.innerHTML='<i class="fas fa-exclamation-triangle"></i> 加载失败，请刷新页面重试';
-                    }
-                    document.getElementById('errorMessage').textContent='无法加载节目数据: ' + error.message;
-                    document.getElementById('errorModal').style.display='flex';
-                }
-            }
-
-            // 返回顶部功能
-            document.getElementById('backToTop').addEventListener('click',function(){
-                window.scrollTo({top:0,behavior:'smooth'});
+            setInterval(updateCountdown, 1000);
+            
+            // 返回顶部按钮
+            window.addEventListener('scroll', function() {
+                const backToTop = document.getElementById('backToTop');
+                backToTop.style.display = window.pageYOffset > 300 ? 'flex' : 'none';
             });
-
-            window.addEventListener('scroll',function(){
-                const backToTop=document.getElementById('backToTop');
-                backToTop.style.display=window.pageYOffset>300?'flex':'none';
+            
+            document.getElementById('backToTop').addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-
-            // 烟花效果
-            const scene=new THREE.Scene();
-            const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,1,10000);
-            const renderer=new THREE.WebGLRenderer({alpha:true});
-            renderer.setSize(window.innerWidth,window.innerHeight);
+            
+            // 初始化烟花效果
+            initFireworks();
+        });
+        
+        // 加载晚会数据
+        function loadEventData() {
+            fetch('index.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('网络响应不正常');
+                    }
+                    return response.json();
+                })
+                .then(config => {
+                    return fetch(config.dataUrl);
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('无法加载节目数据');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // 更新页面内容
+                    document.getElementById('year-title').textContent = `${data.year}元旦晚会`;
+                    document.getElementById('motto').textContent = data.motto;
+                    
+                    // 设置背景图片
+                    if (data.backgroundImage) {
+                        document.body.style.backgroundImage = `url('${data.backgroundImage}')`;
+                        document.body.style.backgroundSize = 'cover';
+                        document.body.style.backgroundPosition = 'center';
+                        document.body.style.backgroundAttachment = 'fixed';
+                    }
+                    
+                    // 生成节目单
+                    const programGrid = document.getElementById('program-grid');
+                    programGrid.innerHTML = '';
+                    
+                    data.programs.forEach(program => {
+                        const programCard = document.createElement('div');
+                        programCard.className = 'program-card';
+                        programCard.innerHTML = `
+                            <div class="program-img">
+                                <img src="${program.image}" alt="${program.title}" onerror="this.src='https://picsum.photos/600/400?random='+Math.floor(Math.random()*1000)">
+                            </div>
+                            <div class="program-content">
+                                <h3>${program.title}</h3>
+                                <p>${program.description}</p>
+                                <span class="time">${program.time}</span>
+                            </div>
+                        `;
+                        programGrid.appendChild(programCard);
+                    });
+                })
+                .catch(error => {
+                    console.error('加载数据失败:', error);
+                    document.getElementById('program-grid').innerHTML = `
+                        <div class="loading">
+                            <i class="fas fa-exclamation-triangle"></i> 加载失败: ${error.message}
+                        </div>
+                    `;
+                });
+        }
+        
+        // 倒计时功能
+        function updateCountdown() {
+            const now = new Date();
+            const newYear = new Date(now.getFullYear() + 1, 0, 1);
+            const diff = newYear - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // 烟花效果
+        function initFireworks() {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 0);
             document.getElementById('fireworks').appendChild(renderer.domElement);
-            camera.position.z=1000;
-            const fireworks=[];
             
-            function createFirework(x,y){
-                const firework={
-                    particles:[],
-                    position:new THREE.Vector3(x,y,0),
-                    velocity:new THREE.Vector3((Math.random()-0.5)*10,Math.random()*10+5,0),
-                    gravity:new THREE.Vector3(0,-0.2,0),
-                    age:0,
-                    maxAge:100
-                };
-                const colors=[0xFF5252,0xFF4500,0xC62828,0xE53935,0xFF8A80];
-                const color=colors[Math.floor(Math.random()*colors.length)];
-                for(let i=0;i<100;i++){
-                    const particle={
-                        position:new THREE.Vector3(x,y,0),
-                        velocity:new THREE.Vector3((Math.random()-0.5)*20,(Math.random()-0.5)*20,(Math.random()-0.5)*20),
-                        color:color,
-                        age:0,
-                        maxAge:50+Math.random()*50
+            camera.position.z = 1000;
+            
+            const fireworks = [];
+            const colors = [0xFF5252, 0xFF4500, 0xC62828, 0xE53935, 0xFF8A80, 0xFFD700];
+            
+            function createFirework() {
+                if (Math.random() < 0.1) { // 控制烟花频率
+                    const x = (Math.random() - 0.5) * window.innerWidth;
+                    const y = -window.innerHeight / 2;
+                    
+                    const firework = {
+                        particles: [],
+                        position: new THREE.Vector3(x, y, 0),
+                        velocity: new THREE.Vector3(
+                            (Math.random() - 0.5) * 4,
+                            Math.random() * 8 + 8,
+                            0
+                        ),
+                        gravity: new THREE.Vector3(0, -0.2, 0),
+                        age: 0,
+                        maxAge: 100 + Math.random() * 50,
+                        exploded: false
                     };
-                    firework.particles.push(particle);
+                    
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    // 创建爆炸粒子
+                    for (let i = 0; i < 80; i++) {
+                        const particle = {
+                            position: new THREE.Vector3(x, y, 0),
+                            velocity: new THREE.Vector3(
+                                (Math.random() - 0.5) * 15,
+                                (Math.random() - 0.5) * 15,
+                                (Math.random() - 0.5) * 15
+                            ),
+                            color: color,
+                            age: 0,
+                            maxAge: 50 + Math.random() * 50
+                        };
+                        firework.particles.push(particle);
+                    }
+                    
+                    fireworks.push(firework);
                 }
-                fireworks.push(firework);
             }
             
-            function animateFireworks(){
-                for(let i=fireworks.length-1;i>=0;i--){
-                    const firework=fireworks[i];
+            function animateFireworks() {
+                for (let i = fireworks.length - 1; i >= 0; i--) {
+                    const firework = fireworks[i];
                     firework.age++;
-                    if(firework.age<30){
+                    
+                    if (!firework.exploded && firework.age < 40) {
                         firework.velocity.add(firework.gravity);
                         firework.position.add(firework.velocity);
-                    }
-                    if(firework.age===30){
-                        for(let j=0;j<firework.particles.length;j++){
-                            firework.particles[j].position.copy(firework.position);
+                        
+                        if (firework.velocity.y < 0 || firework.age >= 40) {
+                            firework.exploded = true;
                         }
                     }
-                    if(firework.age>30){
-                        for(let j=firework.particles.length-1;j>=0;j--){
-                            const particle=firework.particles[j];
-                            particle.age++;
-                            if(particle.age>particle.maxAge){
-                                firework.particles.splice(j,1);
-                            }else{
-                                particle.velocity.y-=0.05;
-                                particle.position.add(particle.velocity);
-                            }
+                    
+                    // 更新粒子
+                    for (let j = firework.particles.length - 1; j >= 0; j--) {
+                        const particle = firework.particles[j];
+                        particle.age++;
+                        
+                        if (particle.age > particle.maxAge) {
+                            firework.particles.splice(j, 1);
+                        } else {
+                            particle.velocity.y -= 0.05;
+                            particle.position.add(particle.velocity);
                         }
                     }
-                    if(firework.age>firework.maxAge||firework.particles.length===0){
-                        fireworks.splice(i,1);
+                    
+                    if (firework.age > firework.maxAge || firework.particles.length === 0) {
+                        fireworks.splice(i, 1);
                     }
                 }
             }
             
-            function renderFireworks(){
+            function renderFireworks() {
                 renderer.clear();
-                for(const firework of fireworks){
-                    if(firework.age<30){
-                        const geometry=new THREE.BufferGeometry();
-                        const vertices=new Float32Array([firework.position.x,firework.position.y,firework.position.z]);
-                        geometry.setAttribute('position',new THREE.BufferAttribute(vertices,3));
-                        const material=new THREE.PointsMaterial({color:0xFFFFFF,size:5});
-                        const point=new THREE.Points(geometry,material);
+                
+                for (const firework of fireworks) {
+                    if (!firework.exploded) {
+                        // 绘制上升的烟花
+                        const geometry = new THREE.BufferGeometry();
+                        const vertices = new Float32Array([
+                            firework.position.x, firework.position.y, 0
+                        ]);
+                        geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+                        const material = new THREE.PointsMaterial({ 
+                            color: 0xFFFFFF, 
+                            size: 4,
+                            transparent: true,
+                            opacity: 0.8
+                        });
+                        const point = new THREE.Points(geometry, material);
                         scene.add(point);
-                        renderer.render(scene,camera);
+                        renderer.render(scene, camera);
                         scene.remove(point);
-                    }else{
-                        for(const particle of firework.particles){
-                            const geometry=new THREE.BufferGeometry();
-                            const vertices=new Float32Array([particle.position.x,particle.position.y,particle.position.z]);
-                            geometry.setAttribute('position',new THREE.BufferAttribute(vertices,3));
-                            const material=new THREE.PointsMaterial({color:particle.color,size:3});
-                            const point=new THREE.Points(geometry,material);
+                    } else {
+                        // 绘制爆炸的粒子
+                        for (const particle of firework.particles) {
+                            const geometry = new THREE.BufferGeometry();
+                            const vertices = new Float32Array([
+                                particle.position.x, particle.position.y, 0
+                            ]);
+                            geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+                            const material = new THREE.PointsMaterial({ 
+                                color: particle.color, 
+                                size: 3,
+                                transparent: true,
+                                opacity: 1 - (particle.age / particle.maxAge)
+                            });
+                            const point = new THREE.Points(geometry, material);
                             scene.add(point);
-                            renderer.render(scene,camera);
+                            renderer.render(scene, camera);
                             scene.remove(point);
                         }
                     }
                 }
             }
             
-            function animate(){
+            function animate() {
                 requestAnimationFrame(animate);
+                createFirework();
                 animateFireworks();
                 renderFireworks();
             }
+            
             animate();
             
-            setInterval(()=>{
-                if(Math.random()<0.3){
-                    createFirework((Math.random()-0.5)*window.innerWidth,-window.innerHeight/2);
-                }
-            },1000);
-
-            
-            window.addEventListener('resize',()=>{
-                camera.aspect=window.innerWidth/window.innerHeight;
+            // 窗口大小调整
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth,window.innerHeight);
+                renderer.setSize(window.innerWidth, window.innerHeight);
             });
-
-            
-            document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-                anchor.addEventListener('click',function(e){
-                    e.preventDefault();
-                    const targetId=this.getAttribute('href');
-                    if(targetId==='#') return;
-                    const targetElement=document.querySelector(targetId);
-                    if(targetElement){
-                        window.scrollTo({top:targetElement.offsetTop,behavior:'smooth'});
-                    }
-                });
-            });
-
-            
-            document.getElementById('closeErrorModal').addEventListener('click',function(){
-                document.getElementById('errorModal').style.display='none';
-            });
-            document.getElementById('errorModalConfirm').addEventListener('click',function(){
-                document.getElementById('errorModal').style.display='none';
-            });
-            window.addEventListener('click',function(event){
-                if(event.target===document.getElementById('errorModal')){
-                    document.getElementById('errorModal').style.display='none';
-                }
-            });
-
-            
-            loadProgramData();
-        });
-
+        }
         
-        document.onkeydown=function(e){
-            if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&e.key==='I')||(e.ctrlKey&&e.key==='U')){
+        // 安全保护
+        document.onkeydown = function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
                 return false;
             }
         };
-        document.addEventListener('contextmenu',function(e){
+        
+        document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             return false;
         });
-
-if(window.location.href.indexOf('https://www.WenTianPlay.com')!==-1){
-            window.location.href='https://www.WenTianPlay.com';
-        }
     </script>
 </body>
 </html>
